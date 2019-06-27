@@ -11,6 +11,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix populatedb gift card duplication error - #4336 by @fowczarek
 - Fix voucher apply once per order - #4339 by @fowczarek
 - Change type of start and end date for discounts on date time field - #4293 by @fowczarek
+- Drop csrf token header from API client - #4357 by @dominik-zeglen
 
 ## 2.7.0
 
