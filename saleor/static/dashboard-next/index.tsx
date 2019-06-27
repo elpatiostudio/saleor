@@ -9,7 +9,6 @@ import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import * as Cookies from "universal-cookie";
 
 import { getAuthToken, removeAuthToken } from "./auth";
 import AuthProvider from "./auth/AuthProvider";
@@ -48,8 +47,6 @@ import TaxesSection from "./taxes";
 import TranslationsSection from "./translations";
 import { PermissionEnum } from "./types/globalTypes";
 
-const cookies = new Cookies();
-
 interface ResponseError extends ErrorResponse {
   networkError?: Error & {
     statusCode?: number;
@@ -74,11 +71,10 @@ const authLink = setContext((_, context) => {
   };
 });
 
+// DON'T TOUCH THIS
+// These are separate clients and do not share configs between themselves
+// so we need to explicitly set them
 const linkOptions = {
-  credentials: "same-origin",
-  headers: {
-    "X-CSRFToken": cookies.get("csrftoken")
-  },
   uri: API_URI
 };
 const uploadLink = createUploadLink(linkOptions);
